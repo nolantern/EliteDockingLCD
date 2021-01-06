@@ -1,19 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Platforms>AnyCPU;x86</Platforms>
-    <ApplicationIcon>EliteDockingLCD.ico</ApplicationIcon>
-    <Authors>nolantern</Authors>
-    <Description>Displays Elite Dangerous docking pad direction on Logitech monochrome LC Displays.
-This software is not an official tool for the game Elite: Dangerous or Logitech and is not affiliated with Frontier Developments or Logitech.</Description>
-    <Copyright>© 2021 nolantern</Copyright>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/nolantern/EliteDockingLCD/</PackageProjectUrl>
-    <PackageIcon></PackageIcon>
-    <RepositoryUrl>https://github.com/nolantern/EliteDockingLCD/</RepositoryUrl>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,19 +13,6 @@ This software is not an official tool for the game Elite: Dangerous or Logitech 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutputPath></OutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="LCD\LandingPad2.cs" />
-    <Compile Remove="LCD\LCDBase.cs" />
-    <Compile Remove="LCD\MainTab2.cs" />
-    <Compile Remove="LCD\Startype.cs" />
-    <Compile Remove="Modules\ChatModule.cs" />
-    <Compile Remove="Modules\StartypeModule.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EliteAPI" Version="3.0.0-alpha0929" />
@@ -59,19 +36,6 @@ This software is not an official tool for the game Elite: Dangerous or Logitech 
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="LCD\LandingPad2.cs" />
-    <None Include="LCD\LCDBase.cs" />
-    <None Include="LCD\MainTab2.cs" />
-    <None Include="LCD\Startype.cs" />
-    <None Include="Modules\ChatModule.cs" />
-    <None Include="Modules\StartypeModule.cs" />
   </ItemGroup>
 
 </Project>
