@@ -18,7 +18,7 @@ var host = Host.CreateDefaultBuilder()
     .ConfigureLogging((context, logger) =>
     {
         logger.ClearProviders();
-        logger.SetMinimumLevel(LogLevel.Information);
+        logger.SetMinimumLevel(LogLevel.Error);
         logger.AddPrettyConsole(ConsoleFormats.Default, ConsoleThemes.OneDarkPro);
     })
     
