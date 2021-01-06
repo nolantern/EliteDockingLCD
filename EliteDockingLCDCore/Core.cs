@@ -20,6 +20,8 @@ namespace EliteDockingLCDCore
 
         public async Task Run()
         {
+            Console.WriteLine("To use Elite Docking LCD keep this console window open or minimize it. Close it to exit.");
+
             LCD.LCDController.InitLcdApp();
 
             /*
