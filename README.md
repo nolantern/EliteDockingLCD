@@ -5,9 +5,13 @@ This applet shows the location of the landing pads in Elite Dangerous.
 ![Preview of docking display](https://i.imgur.com/fbr2UR6.gif)
 ![Preview of standby display](https://i.imgur.com/GvlTXxI.png)
 
+
+
 The two __static lights__ on the right side stand for the green, static lights outside the airlock.
 
 The two **flashing lights** on the left side stand for red flashing lights outside the airlock.
+
+![Starports Airlock](https://i.imgur.com/GywhD2N.gif)
 
 ## How To
 1. Download and extract the [release](https://github.com/nolantern/EliteDockingLCD/releases/latest) to any folder.
