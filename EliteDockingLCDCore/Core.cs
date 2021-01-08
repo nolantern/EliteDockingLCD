@@ -1,4 +1,5 @@
 ﻿using System;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using EliteAPI.Abstractions;
 using Microsoft.Extensions.Logging;
@@ -22,6 +23,7 @@ namespace EliteDockingLCDCore
         {
             Console.WriteLine("To use Elite Docking LCD keep this console window open or minimize it. Close it to exit.");
 
+            DisableAutostartOnDebug();
             LCD.LCDController.InitLcdApp();
 
             /*
@@ -40,6 +42,12 @@ namespace EliteDockingLCDCore
 
             // Start EliteAPI
             await _api.StartAsync();
+        }
+
+        [Conditional("DEBUG")]
+        private void DisableAutostartOnDebug()
+        {
+            LCD.LCDController.AutoStart = false;
         }
     }
 }
