@@ -6,7 +6,7 @@ namespace EliteDockingLCDCore.LCD
 {
     abstract class LCDController
     {
-        public static LCDApp App = new LCDApp("EDLCD", true, false, false);
+        public static LCDApp App = new LCDApp("Elite Docking LCD", true, false, false);
         protected static LCDTabControl TabCtrl = new LCDTabControl();
 
 
