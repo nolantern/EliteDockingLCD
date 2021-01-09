@@ -11,6 +11,7 @@ The author is not related to Frontier Development or Logitech.</Description>
     <Copyright>© 2021 nolantern</Copyright>
     <PackageProjectUrl>https://github.com/nolantern/EliteDockingLCD</PackageProjectUrl>
     <ApplicationIcon>EliteDockingLCD.ico</ApplicationIcon>
+    <AssemblyName>EliteDockingLCD</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
