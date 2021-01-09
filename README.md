@@ -28,6 +28,11 @@ Supported starports are **Coriolis Orbis Ocellus** and **Asteroidbase**.
 - Logitech monochrome display (G13 / G15 / G510)
 - .Net Runtime
 
+## Updating
+Put the new files in the old folder. Overwrite the old files when prompted.
+
+**Please check the release notes for deviations.**
+
 ## Used Software
 - [EliteAPI](https://github.com/EliteAPI/EliteAPI) 
 - [LogiFrame](https://github.com/ikkentim/LogiFrame)
