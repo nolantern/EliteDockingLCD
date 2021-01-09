@@ -22,7 +22,7 @@ The author is not related to Frontier Development or Logitech.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EliteAPI" Version="3.0.0-alpha0929" />
+    <PackageReference Include="EliteAPI" Version="3.0.0-alpha0960" />
     <PackageReference Include="LogiFrame" Version="2.1.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.0" />

@@ -20,7 +20,7 @@ namespace EliteDockingLCDCore.Modules
 
 
         /// <inheritdoc />
-        public LandingPadModule(IEliteDangerousAPI api, ILogger<LandingPadModule> log) : base(api)
+        public LandingPadModule(IEliteDangerousApi api, ILogger<LandingPadModule> log) : base(api)
         {
             _log = log;
         }
