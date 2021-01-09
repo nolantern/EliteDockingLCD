@@ -16,7 +16,6 @@ The two **flashing lights** on the left side stand for red flashing lights outsi
 ## How To
 1. Download and extract the [release](https://github.com/nolantern/EliteDockingLCD/releases/latest) to any folder.
 1. Start the *.exe file.
-   1. Keep the Console window open until you wish to exit the applet
    1. The applet will stay in the background until docking.
 1. When you dock at a __supported starport__, the Display will show the Information.
 1. When docking is finished or cancelled, the applet will hide again.

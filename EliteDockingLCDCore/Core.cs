@@ -1,4 +1,3 @@
-﻿using System;
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using EliteAPI.Abstractions;
@@ -21,8 +20,6 @@ namespace EliteDockingLCDCore
 
         public async Task Run()
         {
-            Console.WriteLine("To use Elite Docking LCD keep this console window open or minimize it. Close it to exit.");
-
             DisableAutostartOnDebug();
             LCD.LCDController.InitLcdApp();
 
