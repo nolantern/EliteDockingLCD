@@ -53,10 +53,10 @@ namespace EliteDockingLCDCore.LCD
             TabCtrl.TabPages.ItemRemoved += (o, e) =>
             {
                 TabCtrl.SelectedIndex = TabCtrl.TabPages.Count - 1;
+
+                // Push to background when only main is left
                 if (TabCtrl.SelectedTab == main)
-                {
                     App.PushToBackground();
-                }
             };
             TabCtrl.TabPages.Add(main);
             App.Controls.Add(TabCtrl);
