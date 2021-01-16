@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using LogiFrame;
 
@@ -6,7 +7,7 @@ namespace EliteDockingLCDCore.LCD
 {
     abstract class LCDController
     {
-        public static LCDApp App = new LCDApp("Elite Docking LCD", AutoStart, false, false);
+        public static LCDApp App = null;
         public static bool AutoStart = true;
 
         protected static LCDTabControl TabCtrl = new LCDTabControl();
@@ -39,6 +40,8 @@ namespace EliteDockingLCDCore.LCD
         public static void InitLcdApp()
         {
             // Only on Debug
+            DisableAutostartOnDebug();
+            App = new LCDApp("Elite Docking LCD", AutoStart, false, false);
             if (!AutoStart)
                 App.PushToForeground();
 
@@ -91,6 +94,12 @@ namespace EliteDockingLCDCore.LCD
         public static void UnBlink()
         {
             TabCtrl.TabPages.Remove(blinky);
+        }
+
+        [Conditional("DEBUG")]
+        private static void DisableAutostartOnDebug()
+        {
+            AutoStart = false;
         }
     }
 }

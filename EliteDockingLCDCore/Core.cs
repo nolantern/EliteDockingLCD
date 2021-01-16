@@ -1,4 +1,3 @@
-﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using EliteAPI.Abstractions;
 using Microsoft.Extensions.Logging;
@@ -20,7 +19,6 @@ namespace EliteDockingLCDCore
 
         public async Task Run()
         {
-            DisableAutostartOnDebug();
             LCD.LCDController.InitLcdApp();
 
             /*
@@ -35,16 +33,9 @@ namespace EliteDockingLCDCore
                 _log.LogInformation("Landing garanted Event XXX");
             };
             */
-            
 
             // Start EliteAPI
             await _api.StartAsync();
-        }
-
-        [Conditional("DEBUG")]
-        private void DisableAutostartOnDebug()
-        {
-            LCD.LCDController.AutoStart = false;
         }
     }
 }
