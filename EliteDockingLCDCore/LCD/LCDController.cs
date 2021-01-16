@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using EliteDockingLCDCore.Properties;
 using LogiFrame;
 
 namespace EliteDockingLCDCore.LCD
@@ -51,8 +52,8 @@ namespace EliteDockingLCDCore.LCD
             // Add Buttons
             App.Controls.Add(txtHide);
             App.Controls.Add(txtExit);
+            App.Controls.Add(txtUpdate);
             App.ButtonPress += App_ButtonPress;
-
         }
 
         private static void App_ButtonPress(object sender, ButtonEventArgs e)
@@ -63,6 +64,11 @@ namespace EliteDockingLCDCore.LCD
                     App.PushToBackground();
                     break;
                 case 1:
+                    if (txtUpdate.Visible)
+                    {
+                        // Open update "releases/latest" in browser
+                        Process.Start("explorer", Resources.latestReleasePage);
+                    }
                     break;
                 case 2:
                     Environment.Exit(1);
@@ -71,6 +77,14 @@ namespace EliteDockingLCDCore.LCD
                     break;
             }
         }
+
+        internal static void ShowUpdateAvailable()
+        {
+            main.MessageText = Messages.update;
+            txtUpdate.Visible = true;
+            App.PushToForeground();
+        }
+
         public static void Blink(long i)
         {
             blinky.Blink(i);

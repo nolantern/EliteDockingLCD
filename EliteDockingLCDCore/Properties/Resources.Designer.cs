@@ -61,6 +61,15 @@ namespace EliteDockingLCDCore.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://github.com/nolantern/EliteDockingLCD/releases/latest.
+        /// </summary>
+        internal static string latestReleasePage {
+            get {
+                return ResourceManager.GetString("latestReleasePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap pad_01_02 {

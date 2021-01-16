@@ -64,6 +64,11 @@ using (var mutex = new Mutex(false, "nolantern.elitedockinglcd"))
             Task finishedTask = await Task.WhenAny(taskList);
             taskList.Remove(finishedTask);
         }
+        
+        if (await updateTask)
+        {
+            LCDController.ShowUpdateAvailable();
+        }
 
         LCDController.AddTabChangers();
         
