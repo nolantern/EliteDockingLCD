@@ -24,26 +24,25 @@ namespace EliteDockingLCDCore.Modules
         {
             _log = log;
         }
-            
+
 
         [EliteDangerousEvent]
         public void DockingGrantedEvent(DockingGrantedEvent e)
         {
             if (e.LandingPad > 0 && e.LandingPad <= 45 && (e.StationType.ToLower() == "coriolis" || e.StationType.ToLower() == "orbis" || e.StationType.ToLower() == "ocellus" || e.StationType.ToLower() == "asteroidbase"))
-                LandingPad.Build(e.LandingPad);
+                LCDController.Blink(e.LandingPad);
         }
 
         [EliteDangerousEvent]
         public void DockedEvent(DockedEvent e)
         {
-            LandingPad.Destroy();
+            LCDController.UnBlink();
         }
 
         [EliteDangerousEvent]
         public void DockingCancelledEvent(DockingCancelledEvent e)
         {
-            LandingPad.Destroy();
+            LCDController.UnBlink();
         }
-
     }
 }

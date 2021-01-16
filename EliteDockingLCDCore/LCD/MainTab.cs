@@ -1,54 +1,69 @@
 ﻿using System.Drawing;
 using LogiFrame;
+using LogiFrame.Drawing;
 
 namespace EliteDockingLCDCore.LCD
 {
-    class MainTab : LCDController
+    class MainTab : LCDBase
     {
-        public static LCDTabPage Tab = null;
-
-        public static LCDTabPage Build()
+        private readonly LCDLabel msg = new LCDLabel
         {
-            
-            if (Tab == null)
+            Location = new Point(1, 25),
+            Font = PixelFonts.Small,
+            Text = "- standby -",
+            AutoSize = true,
+        };
+
+        private Messages messageText;
+        internal Messages MessageText
+        {
+            get => messageText;
+            set
             {
-                var title = new LCDLabel
+                msg.Text = value switch
                 {
-                    Location = new Point(1, 5),
-                    Font = PixelFonts.Title,
-                    Text = "Elite Docking LCD",
-                    AutoSize = true,
+                    Messages.update => "- Update Available -",
+                    _ => "- standby -",
                 };
-                var description = new LCDLabel
-                {
-                    Location = new Point(1, 15),
-                    Font = PixelFonts.Small,
-                    Text = "Shows Docking Pad Location",
-                    AutoSize = true,
-                };
-                var msg = new LCDLabel
-                {
-                    Location = new Point(1, 25),
-                    Font = PixelFonts.Small,
-                    Text = "- standby -",
-                    AutoSize = true,
-                };
-
-                var txtExit = new LCDLabel
-                {
-                    Location = new Point(90, LCDApp.DefaultSize.Height - 8),
-                    Font = PixelFonts.Small,
-                    Text = "[Exit]",
-                    AutoSize = true,
-                };
-
-                Tab = new LCDTabPage();
-                Tab.Controls.Add(title);
-                Tab.Controls.Add(description);
-                Tab.Controls.Add(msg);
-                Tab.Controls.Add(txtExit);
+                messageText = value;
             }
-            return Tab;
         }
+
+        public MainTab() : base()
+        {
+            MergeMethod = MergeMethods.Transparent;
+        }
+
+        protected override void Init()
+        {
+            items.Clear();
+
+            var title = new LCDLabel
+            {
+                Location = new Point(1, 5),
+                Font = PixelFonts.Title,
+                Text = "Elite Docking LCD",
+                AutoSize = true,
+            };
+
+            items.Add(title);
+
+            var description = new LCDLabel
+            {
+                Location = new Point(1, 15),
+                Font = PixelFonts.Small,
+                Text = "Shows Docking Pad Location",
+                AutoSize = true,
+            };
+
+            items.Add(description);
+            items.Add(msg);
+        }
+    }
+
+    enum Messages
+    {
+        standby,
+        update,
     }
 }

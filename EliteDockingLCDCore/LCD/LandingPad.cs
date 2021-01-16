@@ -1,86 +1,51 @@
 ﻿using System.Drawing;
+using EliteDockingLCDCore.Properties;
 using LogiFrame;
 using LogiFrame.Drawing;
-using EliteDockingLCDCore.Properties;
 
 namespace EliteDockingLCDCore.LCD
 {
-    class LandingPad : LCDController
+    class LandingPad : LCDBase
     {
+        private readonly Timer PadTimer = new Timer { Interval = 500, Enabled = true };
+        private static readonly Point PicPoint = new Point(111, 0);
 
-        private static Timer PadTimer = null;
-        private static LCDTabPage BlinkTab = null;
-
-        public static void Build(long i)
+        private readonly LCDPicture lcdPicLights = new LCDPicture
         {
-            var picX = 111;
-            var picY = 0;
+            Location = PicPoint,
+            Size = Resources.pad_blinklights.Size,
+            Image = Resources.pad_blinklights,
+            MergeMethod = MergeMethods.Transparent,
+        };
+        private readonly LCDPicture lcdPicEmpty = new LCDPicture
+        {
+            Location = PicPoint,
+            Size = Resources.pad_empty.Size,
+            Image = Resources.pad_empty,
+        };
+        private readonly LCDLabel txtTitle = new LCDLabel
+        {
+            Location = new Point(1, LCDApp.DefaultSize.Height / 4),
+            Font = PixelFonts.Title,
+            Text = "Docking Pad Display",
+            AutoSize = true,
+        };
+        private readonly LCDMarquee txtDescription = new LCDMarquee
+        {
+            Location = new Point(1, LCDApp.DefaultSize.Height / 2),
+            Font = PixelFonts.Small,
+            Text = "Blinking lights are the port side (red).",
+            Size = new Size(108, 10),
+            BreakAtEnd = false,
+        };
+        private readonly LCDPicture lcdPicPad = new LCDPicture
+        {
+            MergeMethod = MergeMethods.Transparent,
+        };
 
-            Bitmap padPic = GetImg(i);
-            Bitmap lightsPic = Resources.pad_blinklights;
-
-            var lcdPicPad = new LCDPicture
-            {
-                Location = new Point(picX, picY),
-                Size = padPic.Size,
-                Image = padPic,
-                MergeMethod = MergeMethods.Transparent,
-            };
-            var lcdPicLights = new LCDPicture
-            {
-                Location = new Point(picX, picY),
-                Size = lightsPic.Size,
-                Image = lightsPic,
-                MergeMethod = MergeMethods.Transparent,
-            };
-            var lcdPicEmpty = new LCDPicture
-            {
-                Location = new Point(picX, picY),
-                Size = Resources.pad_empty.Size,
-                Image = Resources.pad_empty,
-            };
-
-            var txtTitle = new LCDLabel
-            {
-                Location = new Point(1, LCDApp.DefaultSize.Height / 4),
-                Font = PixelFonts.Title,
-                Text = "Docking Pad Display",
-                AutoSize = true,
-            };
-            var txtDescription = new LCDMarquee
-            {
-                Location = new Point(1, LCDApp.DefaultSize.Height / 2),
-                Font = PixelFonts.Small,
-                Text = "Blinking lights are the port side (red).",
-                Size = new Size(108, 10),
-                BreakAtEnd = false,
-            };
-            var txtHide = new LCDLabel
-            {
-                Location = new Point(6/*11*/, LCDApp.DefaultSize.Height - 8),
-                Font = PixelFonts.Small,
-                Text = "[Hide]",
-                AutoSize = true,
-            };
-            var txtExit = new LCDLabel
-            {
-                Location = new Point(90, LCDApp.DefaultSize.Height - 8),
-                Font = PixelFonts.Small,
-                Text = "[Exit]",
-                AutoSize = true,
-            };
-
-            BlinkTab = new LCDTabPage();
-
-            BlinkTab.Controls.Add(lcdPicEmpty);
-            BlinkTab.Controls.Add(lcdPicPad);
-            BlinkTab.Controls.Add(lcdPicLights);
-            BlinkTab.Controls.Add(txtTitle);
-            BlinkTab.Controls.Add(txtDescription);
-            BlinkTab.Controls.Add(txtHide);
-            BlinkTab.Controls.Add(txtExit);
-
-            PadTimer = new Timer { Interval = 500, Enabled = true };
+        public LandingPad() : base()
+        {
+            // enable blink behavior
             PadTimer.Tick += (sender, args) =>
             {
                 if (lcdPicPad.Visible)
@@ -88,7 +53,6 @@ namespace EliteDockingLCDCore.LCD
                     lcdPicPad.Hide();
                     lcdPicLights.Hide();
                 }
-
                 else
                 {
                     lcdPicPad.Show();
@@ -96,28 +60,33 @@ namespace EliteDockingLCDCore.LCD
                 }
             };
 
-
-
-            if (TabCtrl.TabPages.Contains(BlinkTab))
-            {
-                App.PushToForeground();
-                return;
-            };
-
-            TabCtrl.TabPages.Add(BlinkTab);
-            TabCtrl.SelectedTab = BlinkTab;
-            App.PushToForeground();
+            MergeMethod = MergeMethods.Overlay;
         }
 
-        public static void Destroy()
+        public void Blink(long i)
         {
-            if (PadTimer == null) return;
-            PadTimer.Stop();
-            PadTimer = null;
-            TabCtrl.SelectedIndex = 0;
-            TabCtrl.TabPages.Remove(BlinkTab);
-            BlinkTab = null;
-            App.PushToBackground();
+            var img = GetImg(i);
+            lcdPicPad.Size = img.Size;
+            lcdPicPad.Image = img;
+            lcdPicPad.Location = PicPoint;
+
+            // enable visibility
+            Visible = true;
+        }
+
+        protected override void OnVisibleChanged()
+        {
+            base.OnVisibleChanged();
+            PadTimer.Enabled = Visible;
+        }
+
+        protected override void Init()
+        {
+            items.Add(lcdPicEmpty);
+            items.Add(lcdPicPad);
+            items.Add(lcdPicLights);
+            items.Add(txtTitle);
+            items.Add(txtDescription);
         }
 
         private static Bitmap GetImg(long i)
