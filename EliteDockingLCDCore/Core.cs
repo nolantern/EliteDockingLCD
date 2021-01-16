@@ -19,8 +19,6 @@ namespace EliteDockingLCDCore
 
         public async Task Run()
         {
-            LCD.LCDController.InitLcdApp();
-
             /*
             // Log whenever we change the landing gear
             _api.Status.Gear.OnChange += (sender, isDeployed) =>

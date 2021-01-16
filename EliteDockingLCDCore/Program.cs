@@ -14,6 +14,8 @@ using Valsom.Logging.PrettyConsole.Themes;
 
 using System.Threading;
 using System;
+using System.Collections.Generic;
+using EliteDockingLCDCore.LCD;
 
 
 // Allow only one App instance using Mutex
@@ -51,10 +53,17 @@ using (var mutex = new Mutex(false, "nolantern.elitedockinglcd"))
         })
 
         .Build();
+        // Do work async
+        var coreTask = ActivatorUtilities.CreateInstance<Core>(host.Services).Run();
+        var lcdTask = Task.Run( () => LCDController.InitLcdApp());
+        var updateTask = VersionCheck.UpdateAvailabe();
 
-        var core = ActivatorUtilities.CreateInstance<Core>(host.Services);
-
-        await core.Run();
+        var taskList = new List<Task> { coreTask, lcdTask, updateTask };
+        while (taskList.Count > 0)
+        {
+            Task finishedTask = await Task.WhenAny(taskList);
+            taskList.Remove(finishedTask);
+        }
 
         LCDController.AddTabChangers();
         
