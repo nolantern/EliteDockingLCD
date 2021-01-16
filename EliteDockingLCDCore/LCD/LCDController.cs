@@ -45,19 +45,6 @@ namespace EliteDockingLCDCore.LCD
             if (!AutoStart)
                 App.PushToForeground();
 
-            // Add TabControl to App
-            TabCtrl.TabPages.ItemAdded += (o, e) =>
-            {
-                TabCtrl.SelectedIndex = TabCtrl.TabPages.Count - 1;
-            };
-            TabCtrl.TabPages.ItemRemoved += (o, e) =>
-            {
-                TabCtrl.SelectedIndex = TabCtrl.TabPages.Count - 1;
-
-                // Push to background when only main is left
-                if (TabCtrl.SelectedTab == main)
-                    App.PushToBackground();
-            };
             TabCtrl.TabPages.Add(main);
             App.Controls.Add(TabCtrl);
 
@@ -100,6 +87,31 @@ namespace EliteDockingLCDCore.LCD
         private static void DisableAutostartOnDebug()
         {
             AutoStart = false;
+        }
+
+        public static void AddTabChangers()
+        {
+            /* 
+             * Adds Eventhandler's to change tabs automatically
+             * Needs to applied after EliteAPI is ready to
+             * prevent the screen from flashing.
+             */
+            TabCtrl.SelectedIndex = TabCtrl.TabPages.Count - 1;
+
+            TabCtrl.TabPages.ItemAdded += (o, e) =>
+            {
+                TabCtrl.SelectedIndex = TabCtrl.TabPages.Count - 1;
+            };
+            TabCtrl.TabPages.ItemRemoved += (o, e) =>
+            {
+                TabCtrl.SelectedIndex = TabCtrl.TabPages.Count - 1;
+
+                // Push to background when only main is left
+                if (TabCtrl.SelectedTab == main)
+                {
+                    App.PushToBackground();
+                }
+            };
         }
     }
 }

@@ -56,6 +56,8 @@ using (var mutex = new Mutex(false, "nolantern.elitedockinglcd"))
 
         await core.Run();
 
+        LCDController.AddTabChangers();
+        
         await Task.Delay(-1);
     }
 
