@@ -4,11 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Platforms>AnyCPU;x86</Platforms>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>nolantern</Authors>
     <Description>Displays Elite Dangerous docking direction for selected Starports on Logitech monochrome LC Display.
 The author is not related to Frontier Development or Logitech.</Description>
-    <Copyright>© 2021 nolantern</Copyright>
+    <Copyright>© 2022 nolantern</Copyright>
     <PackageProjectUrl>https://github.com/nolantern/EliteDockingLCD</PackageProjectUrl>
     <ApplicationIcon>EliteDockingLCD.ico</ApplicationIcon>
     <AssemblyName>EliteDockingLCD</AssemblyName>
