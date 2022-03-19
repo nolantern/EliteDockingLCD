@@ -122,7 +122,7 @@ namespace EliteDockingLCDCore.LCD
                 var n when n <= 40 => Resources.pad_40_44_45,
                 var n when n <= 42 => Resources.pad_41_42,
                 var n when n <= 43 => Resources.pad_43,
-                var n when n <= 44 => Resources.pad_40_44_45,
+                var n when n <= 45 => Resources.pad_40_44_45,
                 _ => Resources.pad_empty,
             };
         }
