@@ -26,7 +26,7 @@ Supported starports are **Coriolis Orbis Ocellus** and **Asteroidbase**.
 - Windows x86 / x64
 - Logitech Gaming Software
 - Logitech monochrome display (G13 / G15 / G510)
-- .Net Runtime
+- [.Net5 Runtime **x86**](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-5.0.15-windows-x86-installer) (because some dependencies are not availabe in x64)
 
 ## Updating
 Put the new files in the old folder. Overwrite the old files when prompted.
